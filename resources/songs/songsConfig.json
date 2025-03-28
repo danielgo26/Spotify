@@ -1,0 +1,37 @@
+{
+  "song_01": {
+    "title": "Short Intro Music",
+    "singers": [
+      "Pranit Kamble"
+    ],
+    "countOfPlayings": 4
+  },
+  "song_02": {
+    "title": "Luda po tebe",
+    "singers": [
+      "Kameliya"
+    ],
+    "countOfPlayings": 1
+  },
+  "song_03": {
+    "title": "Faded",
+    "singers": [
+      "ZHU"
+    ],
+    "countOfPlayings": 0
+  },
+  "song_04": {
+    "title": "S\u0027 Agapao",
+    "singers": [
+      "Nikos Vertis"
+    ],
+    "countOfPlayings": 1
+  },
+  "song_05": {
+    "title": "Perfect",
+    "singers": [
+      "Ed Sheeran"
+    ],
+    "countOfPlayings": 1
+  }
+}
