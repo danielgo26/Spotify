@@ -1,0 +1,16 @@
+Exception thrown at [2025-03-27T15:32:40.455749500]
+java.lang.IllegalArgumentException: The count of elements in the login command user input is expected to be 3, but is 2 instead!
+	at validation.ObjectValidator.validateArrayLength(ObjectValidator.java:20)
+	at command.hierarchy.client.LoginClientCommand.execute(LoginClientCommand.java:22)
+	at client.SpotifyClient.printEvalLoop(SpotifyClient.java:80)
+	at client.SpotifyClient.start(SpotifyClient.java:58)
+	at client.startup.ClientStartUp.main(ClientStartUp.java:11)
+
+Exception thrown at [2025-03-27T15:32:47.297069600]
+java.lang.IllegalArgumentException: The count of elements in the login command user input is expected to be 3, but is 2 instead!
+	at validation.ObjectValidator.validateArrayLength(ObjectValidator.java:20)
+	at command.hierarchy.client.LoginClientCommand.execute(LoginClientCommand.java:22)
+	at client.SpotifyClient.printEvalLoop(SpotifyClient.java:80)
+	at client.SpotifyClient.start(SpotifyClient.java:58)
+	at client.startup.ClientStartUp.main(ClientStartUp.java:11)
+
