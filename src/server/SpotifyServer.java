@@ -102,6 +102,7 @@ public class SpotifyServer {
 
     public void stop() {
         this.isServerWorking = false;
+        this.serverState.getExecutorService().shutdown();
 
         if (this.stopServerSignalReceiver != null) {
             this.stopServerSignalReceiver.stop();
