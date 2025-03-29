@@ -29,7 +29,7 @@ public class AudioStreamReceiver implements Runnable {
     private static final String SERVER_HOST = "localhost";
     private static final int BUFFER_CAPACITY = 1024;
 
-    private boolean isRunning;
+    private volatile boolean isRunning;
     private final ByteBuffer buffer;
     private final SocketChannel socketChannel;
     private final ChannelReader channelReader;
