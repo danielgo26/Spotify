@@ -38,7 +38,7 @@ public class AudioStreamSender implements Runnable {
     private final ChannelWriter channelWriter;
     private final User userStreamingClient;
     private AudioInputStream audioStream;
-    private boolean isStreaming;
+    private volatile boolean isStreaming;
 
     public AudioStreamSender(String songKey, ServerState serverState) {
         validateNotNull(songKey, "music title");
