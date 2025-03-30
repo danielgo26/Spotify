@@ -21,6 +21,7 @@ public class JsonFormatHandler implements TextFormatHandler {
     public JsonFormatHandler() {
         json = new GsonBuilder()
             .excludeFieldsWithoutExposeAnnotation()
+            .disableHtmlEscaping()
             .setPrettyPrinting()
             .create();
     }
