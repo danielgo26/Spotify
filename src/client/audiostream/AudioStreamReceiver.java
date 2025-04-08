@@ -100,7 +100,6 @@ public class AudioStreamReceiver implements Runnable {
             if (audioData.length > 0) {
                 sourceLine.write(audioData, 0, audioData.length);
             } else {
-                //closeSourceLine(sourceLine);
                 isRunning = false;
             }
         }
