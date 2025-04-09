@@ -27,8 +27,8 @@ public class AudioStreamSender implements Runnable {
 
     private static final String INPUT_SPLIT_PATTERN = " ";
     private static final String SONGS_FILEPATH = "resources\\songs\\%s.wav";
-    private static final int BUFFER_SIZE = 1024;
-    private final ByteBuffer streamingBuffer;
+    private static final int BUFFER_SIZE = 4096 ;
+    private final ByteBuffer formatBuffer;
 
     private final String songKey;
     private final ServerState serverState;
@@ -51,7 +51,7 @@ public class AudioStreamSender implements Runnable {
         this.channelReader = new ChannelReader();
         this.channelWriter = new ChannelWriter();
         this.userStreamingClient = getUserStreamingClient();
-        this.streamingBuffer = ByteBuffer.allocateDirect(BUFFER_SIZE);
+        this.formatBuffer = ByteBuffer.allocate(BUFFER_SIZE);
         this.isStreaming = false;
     }
 
@@ -59,7 +59,7 @@ public class AudioStreamSender implements Runnable {
     public void run() {
         try {
             audioStream = createAudioStream();
-            sendFormat(streamingBuffer, audioStream.getFormat(), streamingChannel);
+            sendFormat(formatBuffer, audioStream.getFormat(), streamingChannel);
 
             isStreaming = true;
             while (isStreaming) {
