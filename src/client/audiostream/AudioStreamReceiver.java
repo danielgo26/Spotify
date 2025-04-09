@@ -26,11 +26,11 @@ import static validation.ObjectValidator.validateNotNull;
 public class AudioStreamReceiver implements Runnable {
 
     private static final int SERVER_PORT = 8888;
-    private static final String SERVER_HOST = "localhost";
-    private static final int BUFFER_CAPACITY = 1024;
+    private static final String SERVER_HOST = "192.168.248.248";
+    private static final int BUFFER_CAPACITY = 4096 ;
 
     private volatile boolean isRunning;
-    private final ByteBuffer buffer;
+    private final ByteBuffer formatBuffer;
     private final SocketChannel socketChannel;
     private final ChannelReader channelReader;
     private final ChannelWriter channelWriter;
@@ -46,7 +46,7 @@ public class AudioStreamReceiver implements Runnable {
         this.clientState = clientState;
 
         this.isRunning = true;
-        this.buffer = ByteBuffer.allocateDirect(BUFFER_CAPACITY);
+        this.formatBuffer = ByteBuffer.allocate(BUFFER_CAPACITY);
         this.socketChannel = initializeSocketChannel();
         this.channelReader = new ChannelReader();
         this.channelWriter = new ChannelWriter();
@@ -80,6 +80,7 @@ public class AudioStreamReceiver implements Runnable {
         clientState.stopStreaming();
     }
 
+    //todo: use udp for better performance
     private SocketChannel initializeSocketChannel() throws ConnectionException {
         try {
             SocketChannel socket = SocketChannel.open();
@@ -108,7 +109,7 @@ public class AudioStreamReceiver implements Runnable {
     }
 
     private SourceDataLine getSourceDataLine() throws IOException, LineUnavailableException {
-        AudioFormat format = readFormat(socketChannel);
+        AudioFormat format = readFormat(formatBuffer, socketChannel);
 
         try {
             SourceDataLine sourceLine = AudioSystem.getSourceDataLine(format);
@@ -121,7 +122,7 @@ public class AudioStreamReceiver implements Runnable {
         }
     }
 
-    private AudioFormat readFormat(SocketChannel socket) throws IOException {
+    private AudioFormat readFormat(ByteBuffer buffer, SocketChannel socket) throws IOException {
         buffer.clear();
         socket.read(buffer);
 
