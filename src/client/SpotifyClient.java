@@ -52,8 +52,7 @@ public class SpotifyClient {
 
     public void start() {
         try (SocketChannel clientChannel = SocketChannel.open()) {
-            connect(clientChannel);
-            this.clientState.setClientChannel(clientChannel);
+            connect(clientChannel);            
 
             printEvalLoop();
         } catch (Exception e) {
@@ -64,6 +63,7 @@ public class SpotifyClient {
     private void connect(SocketChannel socketChannel) throws IOException, ConnectionException {
         try {
             socketChannel.connect(new InetSocketAddress(serverHost, serverPort));
+            this.clientState.setClientChannel(clientChannel);
         } catch (ConnectException e) {
             throw new ConnectionException("Could not connect to server!");
         }
